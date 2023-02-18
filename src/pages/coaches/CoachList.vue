@@ -12,7 +12,11 @@
       <base-card>
         <div class="controls">
           <base-button mode="outline" @click="loadCoaches">Refresh</base-button>
-          <base-button v-if="!isCoach && !this.isLoading" link to="/register"
+          <base-button link to="/auth" v-if="!isLoggedIn">Login</base-button>
+          <base-button
+            v-if="isLoggedIn && !isCoach && !this.isLoading"
+            link
+            to="/register"
             >Register As a coach</base-button
           >
         </div>
@@ -55,6 +59,9 @@ export default {
     };
   },
   computed: {
+    isLoggedIn() {
+      return this.$store.getters.isAuthenticated;
+    },
     isCoach() {
       return this.$store.getters["coaches/isCoach"];
     },

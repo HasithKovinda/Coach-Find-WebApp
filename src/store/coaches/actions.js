@@ -11,8 +11,13 @@ export default {
       areas: data.areas,
     };
 
+    const token = context.rootGetters.token;
+    console.log(token);
+    console.log(userId);
+
     await axios.put(
-      `https://coach-finnd-app-default-rtdb.firebaseio.com/${userId}.json`,
+      `https://coach-finnd-app-default-rtdb.firebaseio.com/coaches/${userId}.json?auth=` +
+        token,
       coachData
     );
 
