@@ -15,7 +15,7 @@ export default {
     const mode = payload.mode;
     let url = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${apiKey}`;
     if (mode === "signup") {
-      url = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${apiKey}`;
+      url = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${apiKey}`;
     }
     try {
       const res = await axios.post(url, {
@@ -32,7 +32,7 @@ export default {
       localStorage.setItem("tokenExpires", expirationDate);
 
       timer = setTimeout(function () {
-        context.dispatch(" autoLogout");
+        context.dispatch("autoLogout");
       }, expiresIn);
 
       context.commit("setUser", {
@@ -77,7 +77,7 @@ export default {
     }
 
     timer = setTimeout(function () {
-      context.dispatch(" autoLogout");
+      context.dispatch("autoLogout");
     }, expiresIn);
 
     if (token && userId) {

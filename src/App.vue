@@ -13,11 +13,11 @@ import TheHeader from "./components/layout/TheHeader.vue";
 export default {
   components: { TheHeader },
   created() {
-    this.$store.getters.didAutoLogout;
+    this.$store.dispatch("tryLogin");
   },
   computed: {
     autoLogout() {
-      return this.$store.dispatch("");
+      return this.$store.getters.didAutoLogout;
     },
   },
   watch: {
